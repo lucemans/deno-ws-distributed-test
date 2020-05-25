@@ -1,4 +1,3 @@
-import { serve } from "https://deno.land/std@0.53.0/http/server.ts";
 import { Client } from 'https://denopkg.com/jdiamond/MQTT.ts/mod.ts';
 import { broascast } from "./chat.ts";
 
