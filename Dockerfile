@@ -5,4 +5,4 @@ COPY *.js ./
 COPY *.html ./
 
 # deno run --allow-net --allow-env --unstable ./index.ts
-CMD ["/bin/deno", "run", "--allow-net", "--allow-env", "--allow-read", "--unstable", "index.ts"]
+CMD ["deno", "run", "--allow-net", "--allow-env", "--allow-read", "--unstable", "index.ts"]
