@@ -3,10 +3,11 @@ import { broascast } from "./chat.ts";
 
 let client: MQTTLoopback;
 export async function startMQTTServer() {
-    client = new MQTTLoopback(false, { url: 'mqtt://mqtt.mqtt.svc.cluster.local' });
+    const inProd = (Deno.env.get("MQTT_PROD") == "yes");
+    client = new MQTTLoopback(inProd, { url: 'mqtt://mqtt.mqtt.svc.cluster.local' });
     await client.connect();
     const decoder = new TextDecoder();
-    await client.subscribe('novachat/message', (payload) => {
+    await client.subscribe('novachat/message', (topic, payload) => {
         console.log('novachat/message', decoder.decode(payload));
         broascast(decoder.decode(payload));
     });
